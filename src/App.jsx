@@ -4,6 +4,10 @@ import BackgroundVideo from './components/BackgroundVideo';
 import ImageCarousel from './components/ImageCarousel';
 import ImageModal from './components/ImageModal';
 
+const getAcessPath = () => {
+  return './assets.json';
+}
+
 const App = () => {
   const [images, setImages] = useState([]);
   const [videos, setVideos] = useState([]);
@@ -12,7 +16,7 @@ const App = () => {
 
   useEffect(() => {
     // Carregue o JSON a partir da pasta public
-    fetch('/assets.json')
+    fetch(getAcessPath())
       .then((response) => {
         if (!response.ok) {
           throw new Error('Erro ao carregar o JSON');

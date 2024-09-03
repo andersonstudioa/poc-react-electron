@@ -14,9 +14,9 @@ function createWindow() {
     fullscreen: true, // Inicia em fullscreen
     autoHideMenuBar: true, // Oculta a barra de menus
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'), // Adiciona o preload script
-      nodeIntegration: true, // Desabilitar a integração com Node.js para segurança
-      contextIsolation: false, // Manter o isolamento de contexto
+      //preload: path.join(__dirname, 'preload.js'), // Adiciona o preload script
+      nodeIntegration: false, // Desabilitar a integração com Node.js para segurança
+      contextIsolation: true, // Manter o isolamento de contexto
     },
   });
 

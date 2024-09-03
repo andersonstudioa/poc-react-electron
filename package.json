@@ -6,7 +6,7 @@
   "main": "main.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && cp preload.js dist/",
     "lint": "eslint .",
     "preview": "vite preview",
     "electron": "electron .",
@@ -40,9 +40,10 @@
   },
   "build": {
     "appId": "com.electronvite.teste",
-    "productName": "Electron Vite Teste",
+    "productName": "Galeria Imagens - POC",
     "files": [
       "dist/**/*",
+      "public/**/*",
       "main.js",
       "preload.js"
     ],
