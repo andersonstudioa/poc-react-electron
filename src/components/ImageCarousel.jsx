@@ -1,3 +1,5 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 // src/components/ImageCarousel.jsx
 import React, { useEffect } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -5,6 +7,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { Navigation } from 'swiper/modules';
 
+// eslint-disable-next-line react/prop-types
 const ImageCarousel = ({ images, onThumbnailClick }) => {
   useEffect(() => {
     const swiperInstance = document.querySelector('.swiper').swiper;
