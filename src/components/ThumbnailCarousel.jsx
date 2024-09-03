@@ -1,4 +1,6 @@
+/* eslint-disable react/prop-types */
 // src/components/ThumbnailCarousel.jsx
+// eslint-disable-next-line no-unused-vars
 import React from 'react';
 import Slider from 'react-slick';
 import "slick-carousel/slick/slick.css"; 
@@ -40,7 +42,8 @@ const ThumbnailCarousel = ({ images, onThumbnailClick }) => {
       <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index} onClick={() => onThumbnailClick(image)}>
-            <img src={image.src} alt={image.alt} className="cursor-pointer" />
+            {/* <img src={image.src} alt={image.alt} className="cursor-pointer" /> */}
+            <p className='text-center'>{image.alt}</p>
           </div>
         ))}
       </Slider>

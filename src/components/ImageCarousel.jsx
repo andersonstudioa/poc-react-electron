@@ -41,6 +41,11 @@ const ImageCarousel = ({ images, onThumbnailClick }) => {
               className="w-full h-auto object-cover rounded-lg shadow-lg cursor-pointer"
               onClick={() => onThumbnailClick(image)}
             />
+            <div className='bg-gray-700 p-2 mt-1 rounded-lg opacity-85'>
+              <p className='text-white text-center'>
+                {image.alt}
+              </p>
+            </div>
           </SwiperSlide>
         ))}
       </Swiper>

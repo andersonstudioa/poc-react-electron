@@ -42,9 +42,9 @@
     "appId": "com.electronvite.teste",
     "productName": "Electron Vite Teste",
     "files": [
-      "dist/",
-      "public/",
-      "main.js"
+      "dist/**/*",
+      "main.js",
+      "preload.js"
     ],
     "directories": {
       "buildResources": "assets"
