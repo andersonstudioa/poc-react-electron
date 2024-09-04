@@ -5,9 +5,7 @@ import BackgroundVideo from './components/BackgroundVideo';
 import ImageCarousel from './components/ImageCarousel';
 import ImageModal from './components/ImageModal';
 
-const getAcessPath = () => {
-  return 'assets.json'; // O caminho para o arquivo JSON no diretório dist
-}
+const JSON_PATH = import.meta.env.VITE_APP_JSON_DATA;
 
 const App = () => {
   const [images, setImages] = useState([]);
@@ -18,7 +16,7 @@ const App = () => {
   useEffect(() => {
     // Carregue o JSON a partir do IPC
     window.electron = require('electron'); // Acesso ao módulo electron
-    window.electron.ipcRenderer.invoke('read-json-file', getAcessPath())
+    window.electron.ipcRenderer.invoke('read-json-file', JSON_PATH)
       .then((data) => {
         setImages(data.images);
         setVideos(data.videos);

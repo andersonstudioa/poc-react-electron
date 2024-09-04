@@ -33,8 +33,7 @@ function createWindow() {
 // Handler para leitura do JSON
 ipcMain.handle('read-json-file', async (event, filePath) => {
   try {
-    const fullPath = path.join(__dirname, 'dist', filePath);
-    const data = fs.readFileSync(fullPath, 'utf-8');
+    const data = fs.readFileSync(filePath, 'utf-8');
     return JSON.parse(data);
   } catch (error) {
     console.error('Erro ao ler o arquivo JSON:', error);
