@@ -1,4 +1,5 @@
-import { contextBridge, ipcRenderer } from 'electron';
+/* eslint-disable no-undef */
+const { contextBridge, ipcRenderer } = require('electron');
 
 contextBridge.exposeInMainWorld('ipcRenderer', {
   on: (channel, func) => ipcRenderer.on(channel, func),

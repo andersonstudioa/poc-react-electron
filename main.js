@@ -8,15 +8,19 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 function createWindow() {
+  
+  console.log(path.join(__dirname, 'preload.js'));
+
   const win = new BrowserWindow({
     width: 800,
     height: 600,
     fullscreen: true, // Inicia em fullscreen
     autoHideMenuBar: true, // Oculta a barra de menus
     webPreferences: {
-      //preload: path.join(__dirname, 'preload.js'), // Adiciona o preload script
-      nodeIntegration: false, // Desabilitar a integração com Node.js para segurança
+      preload: path.join(__dirname, 'preload.js'), // Adiciona o preload script
+      //preload: path.join(app.getAppPath(), '..', '..', 'preload.js'),
       contextIsolation: true, // Manter o isolamento de contexto
+      nodeIntegration: false, // Desabilitar a integração com Node.js para segurança
     },
   });
 
@@ -26,12 +30,11 @@ function createWindow() {
     win.loadFile(path.join(__dirname, 'dist/index.html')); // No modo de produção
   }
 
-  win.show();
+  //win.show();
 }
 
 app.whenReady().then(() => {
   createWindow();
-
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
