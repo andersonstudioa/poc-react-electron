@@ -41,6 +41,12 @@ ipcMain.handle('read-json-file', async (event, filePath) => {
   }
 });
 
+// Handler para leitura do JSON
+ipcMain.handle('load-json-file', async (event, filePath) => {
+  //TODO
+  console.log(filePath);
+});
+
 app.whenReady().then(() => {
   createWindow();
 

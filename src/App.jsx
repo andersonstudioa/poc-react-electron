@@ -13,6 +13,27 @@ const App = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
 
+  //TODO
+  /*
+    Etapa 1:
+    - Verificar se os valores estão armazenados no LocalStorage
+    - Se não estiverem, exibir modal da etapa 2 sem a necessidade de clique
+
+    Etapa2:
+    1- Criar div transparente no canto inferior esquerdo de 200px x 200px
+    2- Ao clicar no neste div e manter pressionado, abrir um modal
+    3- Exibir no modal os seguintes elementos:
+        a) <h1>Update application</h1>
+        b) <label>Load new config file</label>
+        c) <input type="file">
+        d) <button>Update</button>
+        e) Chamar window.electron.ipcRenderer.invoke('read-json-file', [arquivo])
+    4- Validar formato do json com base em um arquivo do tipo template.json
+    5- Validar se os arquivos descrito no json existem
+    6- Setar valores useState
+    7- Setar valores no localStorage
+  */
+
   useEffect(() => {
     // Carregue o JSON a partir do IPC
     window.electron = require('electron'); // Acesso ao módulo electron
