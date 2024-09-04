@@ -1,11 +1,12 @@
-// eslint-disable-next-line no-unused-vars
+/* eslint-disable no-undef */
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
 import BackgroundVideo from './components/BackgroundVideo';
 import ImageCarousel from './components/ImageCarousel';
 import ImageModal from './components/ImageModal';
 
 const getAcessPath = () => {
-  return './assets.json';
+  return 'assets.json'; // O caminho para o arquivo JSON no diretório dist
 }
 
 const App = () => {
@@ -15,14 +16,9 @@ const App = () => {
   const [selectedImage, setSelectedImage] = useState(null);
 
   useEffect(() => {
-    // Carregue o JSON a partir da pasta public
-    fetch(getAcessPath())
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error('Erro ao carregar o JSON');
-        }
-        return response.json();
-      })
+    // Carregue o JSON a partir do IPC
+    window.electron = require('electron'); // Acesso ao módulo electron
+    window.electron.ipcRenderer.invoke('read-json-file', getAcessPath())
       .then((data) => {
         setImages(data.images);
         setVideos(data.videos);

@@ -1,26 +1,23 @@
 /* eslint-disable no-undef */
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain } from 'electron';
 import { fileURLToPath } from 'url';
 import path from 'path';
+import fs from 'fs';
 
 // Resolver __dirname em módulos ES
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 function createWindow() {
-  
-  console.log(path.join(__dirname, 'preload.js'));
-
   const win = new BrowserWindow({
     width: 800,
     height: 600,
     fullscreen: true, // Inicia em fullscreen
     autoHideMenuBar: true, // Oculta a barra de menus
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'), // Adiciona o preload script
-      //preload: path.join(app.getAppPath(), '..', '..', 'preload.js'),
-      contextIsolation: true, // Manter o isolamento de contexto
-      nodeIntegration: false, // Desabilitar a integração com Node.js para segurança
+      // Sem preload.js
+      nodeIntegration: true, // Habilitar a integração com Node.js
+      contextIsolation: false, // Desabilitar isolamento de contexto
     },
   });
 
@@ -30,11 +27,24 @@ function createWindow() {
     win.loadFile(path.join(__dirname, 'dist/index.html')); // No modo de produção
   }
 
-  //win.show();
+  win.show();
 }
+
+// Handler para leitura do JSON
+ipcMain.handle('read-json-file', async (event, filePath) => {
+  try {
+    const fullPath = path.join(__dirname, 'dist', filePath);
+    const data = fs.readFileSync(fullPath, 'utf-8');
+    return JSON.parse(data);
+  } catch (error) {
+    console.error('Erro ao ler o arquivo JSON:', error);
+    throw error;
+  }
+});
 
 app.whenReady().then(() => {
   createWindow();
+
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
   });
